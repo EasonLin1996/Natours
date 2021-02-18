@@ -1,0 +1,58 @@
+@mixin clearfix {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin photo-hover {
+  &:hover {
+    z-index: 10;
+    transform: scale(1.05) translateY(-0.5rem);
+    box-shadow: 0 2.5em 4rem rgba($color-black, 0.5);
+    outline: 1.5rem solid $color-primary;
+    outline-offset: 2rem;
+  }
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*
+  1.$breakpoint傳值
+  2.@if寫判斷的值
+  3.@content 引到不同地方時能自己寫入css
+*/
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      //600px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      //900px
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      //1200px
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop-big {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}
